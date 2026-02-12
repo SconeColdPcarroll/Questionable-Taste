@@ -91,3 +91,6 @@ Where to view links: PR comments or GitHub Actions run summary (see `docs/PREVIE
 
 
 Never commit private LAN IPs in tracked config files; keep them local in `.env`.
+
+
+Spotify real connect in web preview is wired via `/api/spotify/start`, `/api/spotify/callback`, and `/api/spotify/me` (requires Vercel env vars).

@@ -35,6 +35,7 @@ Add these repository secrets:
 - If a token is pasted in chat/logs, rotate it in Vercel and update the GitHub secret.
 
 ## Troubleshooting
+- If Spotify connect returns `upstream connect error ... connection refused`, make sure your Vercel project **Root Directory is the repo root** and that `vercel.json` does **not** set a static-only `outputDirectory` that disables `/api/*` serverless functions.
 - Missing secret failures are explicit at workflow start.
 - Ensure branch is not `main` or trigger manually using workflow_dispatch.
 - If previews stop posting on PR, verify `pull-requests: write` permission on workflow.

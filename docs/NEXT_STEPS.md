@@ -115,9 +115,3 @@ MVP is launch-ready when all are true:
 4. Receipt is stored and viewable/downloadable.
 5. Legal/consent language is present and accepted.
 6. App is stable in TestFlight for internal testers.
-
-## 6) TestFlight readiness steps (right now)
-1. Build and run the new mobile alpha shell in `apps/mobile` (Welcome → Connect → Consent → Analyze → Mode selection → ReTune/Great Listener → Checkout/History).
-2. Point the mobile app to a reachable API URL for device testing (replace `127.0.0.1` with your LAN host when testing on physical iPhone).
-3. Create Apple bundle + App Store Connect app record (`com.playitforward.app`) and prep EAS build profile for internal TestFlight.
-

@@ -9,5 +9,7 @@
       "source": "/((?!api/).*)",
       "destination": "/apps/web/index.html"
     }
-  ]
+  ],
+  "installCommand": "npm install --workspaces=false --include=dev",
+  "buildCommand": "echo \"No build step required\""
 }

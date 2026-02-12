@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Play it Forward — Preview</title>
+  <style>
+    :root {
+      --bg: #070b1a;
+      --panel: #101733;
+      --panel-2: #141d3f;
+      --text: #eef2ff;
+      --muted: #a9b4da;
+      --line: #2a3767;
+      --primary: #6c63ff;
+      --primary-2: #8b6cff;
+      --success: #16a34a;
+      --danger: #ef4444;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 500px at -10% -10%, #263672 0%, transparent 60%),
+        radial-gradient(800px 400px at 120% -20%, #31205b 0%, transparent 55%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.02em;
+    }
+
+    .sub {
+      margin-top: 6px;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.45;
+    }
+
+    .badge {
+      align-self: flex-start;
+      border: 1px solid #31407b;
+      background: #151f45;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #cbd7ff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      grid-column: span 12;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #e2e8ff;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .mode-toggle {
+      display: inline-flex;
+      border: 1px solid #334279;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0d1330;
+    }
+
+    .mode-btn {
+      padding: 10px 12px;
+      border: 0;
+      background: transparent;
+      color: #b8c6f5;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+    }
+
+    button.action {
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button.action.secondary {
+      background: #1b2855;
+      border: 1px solid #31407b;
+      color: #d7e1ff;
+      font-weight: 600;
+    }
+
+    button.action:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    input, select {
+      border: 1px solid #334279;
+      background: #0d1432;
+      color: #e9eeff;
+      border-radius: 10px;
+      padding: 10px;
+      outline: none;
+      min-width: 120px;
+    }
+
+    .small { font-size: 12px; color: var(--muted); }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid #3650a0;
+      background: #10234f;
+      color: #bcd0ff;
+      padding: 3px 8px;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .item {
+      border: 1px solid #2f407a;
+      border-radius: 12px;
+      background: #0d1535;
+      padding: 10px;
+    }
+
+    .item-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .item-sub {
+      margin: 4px 0;
+      color: #b9c8f8;
+      font-size: 13px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      border: 1px solid #334279;
+      border-radius: 10px;
+      background: #0d1432;
+      padding: 10px;
+    }
+
+    .stat-label { color: var(--muted); font-size: 12px; }
+    .stat-value { margin-top: 3px; font-size: 18px; font-weight: 700; }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: #0f1b3f;
+      border: 1px solid #3852a3;
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: #d9e4ff;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: .2s ease;
+      pointer-events: none;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .history-empty {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 880px) {
+      .results { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    @media (max-width: 900px) {
+      .col-6 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>Play it Forward — Web Preview</h1>
+        <div class="sub">Premium stakeholder demo with mode switching, top risk recommendations, charity search, and checkout simulation. Built for fast PR preview feedback.</div>
+      </div>
+      <div class="badge" id="envBadge">ENV: Preview</div>
+    </div>
+
+    <div class="grid">
+      <section class="card col-12">
+        <h3>Flow Controls</h3>
+        <div class="row">
+          <div class="mode-toggle">
+            <button class="mode-btn active" data-mode="retune" onclick="setMode('retune', this)">ReTune</button>
+            <button class="mode-btn" data-mode="great-listener" onclick="setMode('great-listener', this)">Great Listener</button>
+          </div>
+          <button class="action secondary" onclick="loadConfig()">Load config</button>
+          <button class="action" onclick="loadAnalysis()">Load recommendations</button>
+          <span class="small">Try this on phone/desktop from your preview link.</span>
+        </div>
+      </section>
+
+      <section class="card col-6">
+        <h3>Checkout Simulator</h3>
+        <div class="row">
+          <input id="amt" value="10" aria-label="Amount" />
+          <label class="small"><input id="ru" type="checkbox" checked /> round up (+7%)</label>
+          <button class="action" onclick="checkout()">Create checkout</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-label">Partner</div><div class="stat-value" id="statPartner">—</div></div>
+          <div class="stat"><div class="stat-label">Total</div><div class="stat-value" id="statTotal">—</div></div>
+          <div class="stat"><div class="stat-label">Status</div><div class="stat-value" id="statStatus">—</div></div>
+        </div>
+      </section>
+
+      <section class="card col-6">
+        <h3>Find Different Charity</h3>
+        <div class="row">
+          <input id="q" placeholder="Search term" />
+          <select id="category">
+            <option value="">All categories</option>
+            <option value="anti-hate">anti-hate</option>
+            <option value="domestic-violence">domestic-violence</option>
+            <option value="lgbtq-support">lgbtq-support</option>
+            <option value="anti-racism">anti-racism</option>
+            <option value="sexual-violence">sexual-violence</option>
+          </select>
+          <button class="action" onclick="searchCharities()">Search</button>
+        </div>
+        <div id="charities" class="results" style="margin-top:10px"></div>
+      </section>
+
+      <section class="card col-12">
+        <h3>Top Recommendations</h3>
+        <div id="analysisMeta" class="small">Load recommendations to view.</div>
+        <div id="analysis" class="results" style="margin-top:10px"></div>
+      </section>
+
+      <section class="card col-6">
+        <h3>Runtime Config</h3>
+        <pre id="config">Not loaded.</pre>
+      </section>
+
+      <section class="card col-6">
+        <h3>Donation History (browser local)</h3>
+        <div class="row">
+          <button class="action secondary" onclick="clearHistory()">Clear history</button>
+        </div>
+        <div id="history" style="margin-top:10px"></div>
+      </section>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+<script>
+  const state = { mode: 'retune' };
+
+  function showToast(text, tone = 'info') {
+    const el = document.getElementById('toast');
+    el.textContent = text;
+    el.style.borderColor = tone === 'error' ? '#7f1d1d' : '#3852a3';
+    el.style.background = tone === 'error' ? '#3a1414' : '#0f1b3f';
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 1800);
+  }
+
+  async function asJson(res) {
+    const payload = await res.json();
+    if (!res.ok) throw new Error(payload.error || 'Request failed');
+    return payload;
+  }
+
+  function setMode(mode, btn) {
+    state.mode = mode;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    showToast(`Mode switched to ${mode === 'retune' ? 'ReTune' : 'Great Listener'}`);
+  }
+
+  function readHistory() {
+    try { return JSON.parse(localStorage.getItem('pif_history') || '[]'); }
+    catch { return []; }
+  }
+
+  function writeHistory(rows) {
+    localStorage.setItem('pif_history', JSON.stringify(rows));
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const el = document.getElementById('history');
+    const rows = readHistory();
+    if (!rows.length) {
+      el.innerHTML = '<div class="history-empty">No donations yet.</div>';
+      return;
+    }
+
+    el.innerHTML = rows.slice(0, 8).map(row => `
+      <div class="item">
+        <p class="item-title">$${row.amountUsd} → total $${row.totalUsd}</p>
+        <p class="item-sub">${new Date(row.ts).toLocaleString()}</p>
+      </div>
+    `).join('');
+  }
+
+  function renderAnalysis(payload) {
+    const list = payload.topRiskyRecommendations || [];
+    document.getElementById('analysisMeta').textContent = `${state.mode.toUpperCase()} · Overall suggestion: $${payload.overallSuggestedDonationUsd || 0}`;
+    document.getElementById('analysis').innerHTML = list.map(r => `
+      <div class="item">
+        <p class="item-title">#${r.rank} ${r.artistName}</p>
+        <p class="item-sub">${r.charityName}</p>
+        <div class="pill">${r.category || 'general'}</div>
+        <p class="item-sub">Suggested donation: $${r.suggestedDonationUsd}</p>
+      </div>
+    `).join('') || '<div class="history-empty">No recommendations.</div>';
+  }
+
+  function renderCharities(payload) {
+    const rows = payload.results || [];
+    document.getElementById('charities').innerHTML = rows.map(r => `
+      <div class="item">
+        <p class="item-title">${r.name}</p>
+        <p class="item-sub">EIN: ${r.ein}</p>
+        <div class="pill">${r.category}</div>
+      </div>
+    `).join('') || '<div class="history-empty">No matching charities.</div>';
+  }
+
+  async function loadConfig() {
+    try {
+      const payload = await asJson(await fetch('/api/meta/config'));
+      document.getElementById('config').textContent = JSON.stringify(payload, null, 2);
+      showToast('Config loaded');
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  }
+
+  async function loadAnalysis() {
+    try {
+      const payload = await asJson(await fetch('/api/analysis/demo-user'));
+      payload.mode = state.mode;
+      renderAnalysis(payload);
+      showToast('Recommendations loaded');
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  }
+
+  async function checkout() {
+    try {
+      const amountUsd = Number(document.getElementById('amt').value || 0);
+      const roundUpProcessingFees = document.getElementById('ru').checked;
+      const payload = await asJson(await fetch('/api/donations/checkout', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ amountUsd, roundUpProcessingFees })
+      }));
+
+      document.getElementById('statPartner').textContent = payload.partner;
+      document.getElementById('statTotal').textContent = `$${payload.totalUsd}`;
+      document.getElementById('statStatus').textContent = payload.status.replaceAll('_', ' ');
+
+      writeHistory([{ ts: new Date().toISOString(), ...payload }, ...readHistory()]);
+      showToast('Checkout created');
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  }
+
+  async function searchCharities() {
+    try {
+      const q = encodeURIComponent(document.getElementById('q').value || '');
+      const category = encodeURIComponent(document.getElementById('category').value || '');
+      const payload = await asJson(await fetch(`/api/charities/search?q=${q}&category=${category}`));
+      renderCharities(payload);
+      showToast(`Found ${payload.count} charities`);
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  }
+
+  function clearHistory() {
+    writeHistory([]);
+    showToast('History cleared');
+  }
+
+  renderHistory();
+</script>
+</body>
+</html>

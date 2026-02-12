@@ -1,0 +1,485 @@
+{
+  "generatedAt": "2026-02-11T23:23:35.501Z",
+  "entries": [
+    {
+      "artist_id": "direct-1",
+      "artist_name": "Kanye West",
+      "risk_category": "direct-match",
+      "charity_name": "Anti-Defamation League (anti-hate/education)",
+      "charity_ein": "13-1818724",
+      "monthly_listeners": 69009987,
+      "note": "Widely condemned antisemitic remarks and praise of Hitler (public statements)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-2",
+      "artist_name": "Chris Brown",
+      "risk_category": "direct-match",
+      "charity_name": "National Domestic Violence Hotline",
+      "charity_ein": "75-1658287",
+      "monthly_listeners": 60924618,
+      "note": "Domestic violence felony assault case (widely documented)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-3",
+      "artist_name": "Travis Scott",
+      "risk_category": "direct-match",
+      "charity_name": "Cure Violence Global (violence prevention)",
+      "charity_ein": "82-3471223",
+      "monthly_listeners": 60458394,
+      "note": "Astroworld crowd-safety tragedy controversy (widely covered)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-4",
+      "artist_name": "XXXTENTACION",
+      "risk_category": "direct-match",
+      "charity_name": "National Domestic Violence Hotline",
+      "charity_ein": "75-1658287",
+      "monthly_listeners": 34108146,
+      "note": "Serious abuse allegations and violent-incident controversies (widely covered)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-5",
+      "artist_name": "DaBaby",
+      "risk_category": "direct-match",
+      "charity_name": "The Trevor Project",
+      "charity_ein": "95-4681280",
+      "monthly_listeners": 27255051,
+      "note": "Widely criticized homophobic remarks at a 2021 concert",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-6",
+      "artist_name": "Morgan Wallen",
+      "risk_category": "direct-match",
+      "charity_name": "NAACP Legal Defense Fund",
+      "charity_ein": "13-1655255",
+      "monthly_listeners": 32620373,
+      "note": "Used a racial slur on video (2021) and faced backlash",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-7",
+      "artist_name": "Nicki Minaj",
+      "risk_category": "direct-match",
+      "charity_name": "UNICEF USA (public health)",
+      "charity_ein": "13-1760110",
+      "monthly_listeners": 44745130,
+      "note": "Vaccine misinformation controversy (high-profile social posts)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-8",
+      "artist_name": "50 Cent",
+      "risk_category": "direct-match",
+      "charity_name": "GLAAD",
+      "charity_ein": "13-2738790",
+      "monthly_listeners": 46748617,
+      "note": "Frequent homophobic public insults and feuds (widely criticized)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-9",
+      "artist_name": "Eminem",
+      "risk_category": "direct-match",
+      "charity_name": "The Trevor Project",
+      "charity_ein": "95-4681280",
+      "monthly_listeners": 73213029,
+      "note": "Historic slur usage in early work; later addressed (still controversial)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-10",
+      "artist_name": "Guns N' Roses",
+      "risk_category": "direct-match",
+      "charity_name": "ADL",
+      "charity_ein": "13-1818724",
+      "monthly_listeners": 34228218,
+      "note": "Past racist/homophobic lyrics controversy",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-11",
+      "artist_name": "Playboi Carti",
+      "risk_category": "direct-match",
+      "charity_name": "National Domestic Violence Hotline",
+      "charity_ein": "75-1658287",
+      "monthly_listeners": 45325563,
+      "note": "Domestic violence allegations (widely reported)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-12",
+      "artist_name": "A$AP Rocky",
+      "risk_category": "direct-match",
+      "charity_name": "Alliance for Safety and Justice",
+      "charity_ein": "85-3209787",
+      "monthly_listeners": 47322140,
+      "note": "Assault-incident controversies (widely reported)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-13",
+      "artist_name": "Cardi B",
+      "risk_category": "direct-match",
+      "charity_name": "Safe Horizon (victim support)",
+      "charity_ein": "13-2945247",
+      "monthly_listeners": 32554567,
+      "note": "Past admissions about drugging/robbing men controversy (publicly discussed)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-14",
+      "artist_name": "Lil Wayne",
+      "risk_category": "direct-match",
+      "charity_name": "GLAAD",
+      "charity_ein": "13-2738790",
+      "monthly_listeners": 48228617,
+      "note": "Lyrics criticized for homophobia/ (long-running debate)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-15",
+      "artist_name": "Ted Nugent",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized racist/violent political rhetoric (public statements)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-16",
+      "artist_name": "Kid Rock",
+      "risk_category": "direct-match",
+      "charity_name": "The Trevor Project",
+      "charity_ein": "95-4681280",
+      "monthly_listeners": 0,
+      "note": "Widely criticized hateful/anti-LGBTQ public comments (public)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-17",
+      "artist_name": "Iggy Azalea",
+      "risk_category": "direct-match",
+      "charity_name": "Color Of Change",
+      "charity_ein": "20-5380221",
+      "monthly_listeners": 7289358,
+      "note": "Cultural appropriation / offensive lyric controversies",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-18",
+      "artist_name": "Morrissey",
+      "risk_category": "direct-match",
+      "charity_name": "Southern Poverty Law Center",
+      "charity_ein": "63-0598743",
+      "monthly_listeners": 0,
+      "note": "Repeatedly criticized for anti-immigrant/racist statements",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-19",
+      "artist_name": "Eric Clapton",
+      "risk_category": "direct-match",
+      "charity_name": "UNICEF USA (public health)",
+      "charity_ein": "13-1760110",
+      "monthly_listeners": 0,
+      "note": "COVID-era misinformation/anti-lockdown statements criticized",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-20",
+      "artist_name": "Jason Aldean",
+      "risk_category": "direct-match",
+      "charity_name": "Brady Center to Prevent Gun Violence",
+      "charity_ein": "52-1285097",
+      "monthly_listeners": 0,
+      "note": "Song/video controversy widely criticized as endorsing vigilantism",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-21",
+      "artist_name": "Azealia Banks",
+      "risk_category": "direct-match",
+      "charity_name": "GLAAD",
+      "charity_ein": "13-2738790",
+      "monthly_listeners": 0,
+      "note": "Repeated racist/homophobic/transphobic remarks (widely criticized)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-22",
+      "artist_name": "JK Rowling (podcasts/audiobooks)",
+      "risk_category": "direct-match",
+      "charity_name": "Trans Lifeline",
+      "charity_ein": "47-1791152",
+      "monthly_listeners": 0,
+      "note": "Gender-identity discourse widely criticized as transphobic (public debate)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-23",
+      "artist_name": "Yeat",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "—",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-24",
+      "artist_name": "Mel Gibson (soundtracks)",
+      "risk_category": "direct-match",
+      "charity_name": "Anti-Defamation League (anti-hate/education)",
+      "charity_ein": "13-1818724",
+      "monthly_listeners": 0,
+      "note": "Antisemitic/racist remarks scandal (widely reported)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-25",
+      "artist_name": "R. Kelly",
+      "risk_category": "direct-match",
+      "charity_name": "RAINN",
+      "charity_ein": "52-1886511",
+      "monthly_listeners": 0,
+      "note": "Convicted sex crimes; widely documented",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-26",
+      "artist_name": "Marilyn Manson",
+      "risk_category": "direct-match",
+      "charity_name": "National Domestic Violence Hotline",
+      "charity_ein": "75-1658287",
+      "monthly_listeners": 0,
+      "note": "Multiple abuse allegations and lawsuits (widely reported)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-27",
+      "artist_name": "Tekashi 6ix9ine",
+      "risk_category": "direct-match",
+      "charity_name": "National Center for Missing & Exploited Children",
+      "charity_ein": "52-1328557",
+      "monthly_listeners": 0,
+      "note": "Felony child sexual performance conviction; other controversies",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-28",
+      "artist_name": "Gary Glitter",
+      "risk_category": "direct-match",
+      "charity_name": "National Center for Missing & Exploited Children",
+      "charity_ein": "52-1328557",
+      "monthly_listeners": 620779,
+      "note": "Convicted sex offenses involving children",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-29",
+      "artist_name": "lostprophets",
+      "risk_category": "direct-match",
+      "charity_name": "Darkness to Light",
+      "charity_ein": "57-1095108",
+      "monthly_listeners": 274603,
+      "note": "Frontman convicted of child sex offenses; name still streams",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-30",
+      "artist_name": "Burzum",
+      "risk_category": "direct-match",
+      "charity_name": "Life After Hate",
+      "charity_ein": "81-0896671",
+      "monthly_listeners": 259328,
+      "note": "Project founder convicted of murder/arson; extremist-adjacent controversies",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-31",
+      "artist_name": "Vince Neil",
+      "risk_category": "direct-match",
+      "charity_name": "Mothers Against Drunk Driving (MADD)",
+      "charity_ein": "94-2707273",
+      "monthly_listeners": 128667,
+      "note": "Vehicular manslaughter (DUI) conviction",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-32",
+      "artist_name": "As I Lay Dying",
+      "risk_category": "direct-match",
+      "charity_name": "Alliance for Safety and Justice",
+      "charity_ein": "85-3209787",
+      "monthly_listeners": 814108,
+      "note": "Frontman convicted of solicitation to commit murder",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-33",
+      "artist_name": "Shyne",
+      "risk_category": "direct-match",
+      "charity_name": "Brady Center to Prevent Gun Violence",
+      "charity_ein": "52-1285097",
+      "monthly_listeners": 381910,
+      "note": "Attempted murder / assault conviction (club shooting case)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-34",
+      "artist_name": "Phil Spector",
+      "risk_category": "direct-match",
+      "charity_name": "Alliance for Safety and Justice",
+      "charity_ein": "85-3209787",
+      "monthly_listeners": 23237,
+      "note": "Second-degree murder conviction",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-35",
+      "artist_name": "Boy George",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 1000838,
+      "note": "False imprisonment & assault conviction",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-36",
+      "artist_name": "Mystikal",
+      "risk_category": "direct-match",
+      "charity_name": "RAINN",
+      "charity_ein": "52-1886511",
+      "monthly_listeners": 901626,
+      "note": "Sexual battery conviction; additional allegations reported",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-37",
+      "artist_name": "Chuck Berry",
+      "risk_category": "direct-match",
+      "charity_name": "Darkness to Light",
+      "charity_ein": "57-1095108",
+      "monthly_listeners": 6376192,
+      "note": "Mann Act conviction (transporting a minor across state lines)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-38",
+      "artist_name": "Tay-K",
+      "risk_category": "direct-match",
+      "charity_name": "Cure Violence Global",
+      "charity_ein": "82-3471223",
+      "monthly_listeners": 2854644,
+      "note": "Murder conviction",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-39",
+      "artist_name": "Bobby Shmurda",
+      "risk_category": "direct-match",
+      "charity_name": "Everytown for Gun Safety Support Fund",
+      "charity_ein": "26-1598353",
+      "monthly_listeners": 2556337,
+      "note": "Weapons possession / conspiracy conviction",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-40",
+      "artist_name": "Slick Rick",
+      "risk_category": "direct-match",
+      "charity_name": "Alliance for Safety and Justice",
+      "charity_ein": "85-3209787",
+      "monthly_listeners": 1172193,
+      "note": "Attempted murder conviction",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-41",
+      "artist_name": "Russell Brand (podcasts)",
+      "risk_category": "direct-match",
+      "charity_name": "RAINN",
+      "charity_ein": "52-1886511",
+      "monthly_listeners": 0,
+      "note": "Sexual assault allegations (widely reported; disputed)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-42",
+      "artist_name": "Curate Artist 43",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-43",
+      "artist_name": "Curate Artist 44",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-44",
+      "artist_name": "Curate Artist 45",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-45",
+      "artist_name": "Curate Artist 46",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-46",
+      "artist_name": "Curate Artist 47",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-47",
+      "artist_name": "Curate Artist 49",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    },
+    {
+      "artist_id": "direct-48",
+      "artist_name": "Curate Artist 50",
+      "risk_category": "direct-match",
+      "charity_name": "ACLU (civil liberties)",
+      "charity_ein": "13-3871360",
+      "monthly_listeners": 0,
+      "note": "Widely criticized public statement/action (add specific incident)",
+      "suggested_donation_usd": 5
+    }
+  ]
+}

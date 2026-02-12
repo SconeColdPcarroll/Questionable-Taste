@@ -43,15 +43,10 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Build (static web preview)
-        run: |
-          mkdir -p .vercel/output/static
-          cp -r apps/web/* .vercel/output/static/
-
       - name: Deploy preview
         id: deploy
         run: |
-          url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          url=$(vercel deploy --yes --token=${{ secrets.VERCEL_TOKEN }})
           echo "preview_url=$url" >> "$GITHUB_OUTPUT"
           echo "### 🔗 Vercel Preview" >> "$GITHUB_STEP_SUMMARY"
           echo "$url" >> "$GITHUB_STEP_SUMMARY"

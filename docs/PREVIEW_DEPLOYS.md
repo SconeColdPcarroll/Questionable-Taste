@@ -7,7 +7,7 @@ This repo is wired for **Vercel Preview Deployments** using GitHub Actions.
 - Every PR gets a preview deployment and a PR comment with a clickable URL.
 - Manual trigger support via GitHub Actions `workflow_dispatch`.
 - The preview URL is also written to the GitHub Actions run summary.
-- The preview serves `apps/web` as a production-like static deployment.
+- The preview deploy is run directly by Vercel CLI from repo source (no `--prebuilt` output required).
 
 ## Files
 - `.github/workflows/vercel-preview.yml`
@@ -41,3 +41,7 @@ Add these repository secrets:
 
 
 See `docs/SCREENSHOTS.md` for reliable screenshot capture workflow.
+
+
+## Fix applied for your merge blocker
+If you saw `Config file was not found at ".vercel/output/config.json"`, this workflow now avoids `--prebuilt` mode and uses a normal `vercel deploy --yes`, which resolves that error.

@@ -1,0 +1,21 @@
+{
+  "name": "play-it-forward-mobile",
+  "private": true,
+  "version": "0.1.0",
+  "main": "App.js",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo run:ios",
+    "android": "expo run:android",
+    "web": "expo start --web",
+    "build:ios:preview": "eas build --platform ios --profile preview",
+    "build:ios:production": "eas build --platform ios --profile production",
+    "submit:ios:production": "eas submit --platform ios --profile production"
+  },
+  "dependencies": {
+    "expo": "~52.0.20",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.5"
+  }
+}

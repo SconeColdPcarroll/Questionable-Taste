@@ -6,6 +6,9 @@ const path = require('path');
 const PORT = Number(process.env.PORT || 4000);
 const ADMIN_KEY = process.env.ADMIN_KEY || 'play-it-forward-admin';
 const mappingsPath = path.resolve(__dirname, '../../../data/mappings.json');
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || 'spotify-client-id-placeholder';
+const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI || 'playitforward://spotify/callback';
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET || '';
 
 function splitCsvLine(line) {
   const values = [];
@@ -152,6 +155,50 @@ function validateEntry(input) {
       suggested_donation_usd: Number(donation.toFixed(2))
     }
   };
+}
+
+
+function spotifyAuthStartUrl(state) {
+  const qs = new URLSearchParams({
+    client_id: SPOTIFY_CLIENT_ID,
+    response_type: 'code',
+    redirect_uri: SPOTIFY_REDIRECT_URI,
+    scope: 'user-top-read user-read-email',
+    state
+  });
+
+  return `https://accounts.spotify.com/authorize?${qs.toString()}`;
+}
+
+
+async function exchangeSpotifyCodeForToken(code) {
+  if (!SPOTIFY_CLIENT_SECRET) {
+    throw new Error('SPOTIFY_CLIENT_SECRET is not configured on the API server');
+  }
+
+  const body = new URLSearchParams({
+    grant_type: 'authorization_code',
+    code,
+    redirect_uri: SPOTIFY_REDIRECT_URI,
+    client_id: SPOTIFY_CLIENT_ID,
+    client_secret: SPOTIFY_CLIENT_SECRET
+  });
+
+  const response = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body
+  });
+
+  const payload = await response.json();
+  if (!response.ok) {
+    const message = payload.error_description || payload.error || 'Spotify token exchange failed';
+    throw new Error(message);
+  }
+
+  return payload;
 }
 
 function adminHtml() {
@@ -445,6 +492,55 @@ const server = http.createServer(async (req, res) => {
 
   if (req.method === 'GET' && url.pathname === '/health') {
     return json(res, 200, { ok: true, service: 'play-it-forward-api' });
+  }
+
+
+  if (req.method === 'POST' && url.pathname === '/auth/spotify/start') {
+    const state = `pif-${Date.now()}`;
+    return json(res, 200, {
+      state,
+      redirectUri: SPOTIFY_REDIRECT_URI,
+      authorizeUrl: spotifyAuthStartUrl(state),
+      message: 'Open authorizeUrl in browser to continue Spotify OAuth.'
+    });
+  }
+
+
+  if (req.method === 'POST' && url.pathname === '/auth/spotify/exchange') {
+    try {
+      const payload = await parseJsonBody(req);
+      const code = String(payload.code || '').trim();
+      if (!code) {
+        return json(res, 400, { error: 'code is required' });
+      }
+
+      const token = await exchangeSpotifyCodeForToken(code);
+      return json(res, 200, {
+        status: 'token_received',
+        expiresIn: token.expires_in,
+        scope: token.scope,
+        tokenType: token.token_type,
+        hasRefreshToken: Boolean(token.refresh_token),
+        accessTokenPreview: token.access_token ? `${token.access_token.slice(0, 10)}...` : null
+      });
+    } catch (error) {
+      return json(res, 400, { error: error.message });
+    }
+  }
+
+  if (req.method === 'GET' && url.pathname === '/auth/spotify/callback') {
+    const code = url.searchParams.get('code');
+    const state = url.searchParams.get('state');
+
+    if (!code) {
+      return json(res, 400, { error: 'Missing code query parameter' });
+    }
+
+    return json(res, 200, {
+      status: 'oauth_callback_received',
+      codePreview: `${code.slice(0, 6)}...`,
+      state: state || null
+    });
   }
 
   if (req.method === 'GET' && url.pathname === '/admin') {

@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Play it Forward",
+    "slug": "play-it-forward",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.playitforward.app"
+    },
+    "scheme": "playitforward"
+  }
+}

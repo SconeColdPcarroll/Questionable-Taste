@@ -43,3 +43,51 @@ ADMIN_KEY=your-secret-key npm run api:start
 
 
 Admin UI now includes a **bulk import textarea** for pasted CSV text, plus inline edit support.
+
+## Mobile app scaffold (TestFlight prep)
+A new iOS-first Expo app shell now exists at `apps/mobile` with the core 8-screen MVP flow wired to the API stubs.
+
+Run:
+```bash
+cd apps/mobile
+npm install
+npm run start
+```
+
+See `apps/mobile/README.md` for flow and run details.
+
+### TestFlight build commands
+The mobile app now includes EAS build profiles:
+
+```bash
+cd apps/mobile
+npm run build:ios:preview
+```
+
+See `apps/mobile/README.md` for full Apple/TestFlight setup (including `ascAppId`).
+
+
+Mobile env template: `apps/mobile/.env.example` (set `EXPO_PUBLIC_API_BASE_URL` before running on device).
+
+
+TestFlight runbook: `docs/TESTFLIGHT_READY.md`
+
+
+## Firebase fallback (no Apple fee)
+If you do not want to pay for Apple Developer right now, use the web MVP fallback in `firebase/` + `apps/web/`.
+
+See `firebase/README.md` for deploy steps.
+
+
+## Preview deploys (branch + PR links)
+Vercel preview deploy automation is wired via GitHub Actions so each branch/PR gets a shareable URL.
+See `docs/PREVIEW_DEPLOYS.md` for setup.
+
+
+Web MVP now includes mode switch, charity search, and local donation history for demos.
+
+
+Where to view links: PR comments or GitHub Actions run summary (see `docs/PREVIEW_DEPLOYS.md`).
+
+
+Never commit private LAN IPs in tracked config files; keep them local in `.env`.

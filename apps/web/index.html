@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Play it Forward — Good vs Risky Recap</title>
+  <style>
+    :root {
+      --bg: #eef4ee;
+      --panel: #ffffff;
+      --line: #e2e8e2;
+      --text: #1f2a22;
+      --muted: #738177;
+      --green-700: #1f8b44;
+      --green-600: #2ca652;
+      --green-500: #47bf5c;
+      --green-soft: #eaf8eb;
+      --red-600: #de4545;
+      --red-500: #ee5959;
+      --red-soft: #fff0ef;
+      --shadow: 0 18px 45px rgba(31, 58, 35, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(850px 420px at -20% -5%, #d7f7dd 0%, transparent 60%),
+        radial-gradient(800px 350px at 120% -10%, #f4fbf5 0%, transparent 55%),
+        var(--bg);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 26px 10px 32px;
+    }
+
+    .phone {
+      width: min(440px, 100%);
+      border-radius: 36px;
+      border: 1px solid #d2dcd2;
+      overflow: hidden;
+      background: #f8fbf8;
+      box-shadow: 0 24px 70px rgba(36, 54, 40, 0.18);
+      position: relative;
+    }
+
+    .statusbar {
+      height: 32px;
+      background: #f8fbf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .statusbar::before {
+      content: '';
+      width: 126px;
+      height: 21px;
+      border-radius: 999px;
+      background: #e6ece6;
+      border: 1px solid #d2dbd3;
+    }
+
+    .content {
+      max-height: calc(100vh - 112px);
+      overflow: auto;
+      padding: 12px 14px 92px;
+    }
+
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      color: #4a5a4d;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .brand-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 800;
+      color: #1b7a39;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-dot {
+      width: 17px;
+      height: 17px;
+      border-radius: 5px;
+      background: linear-gradient(145deg, #a7e33a, #118642);
+      position: relative;
+    }
+    .brand-dot::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 4px;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid #fff;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background:
+        radial-gradient(180px 90px at 86% 14%, rgba(131,227,145,.45) 0%, transparent 75%),
+        radial-gradient(270px 140px at 90% 88%, rgba(143,223,131,.36) 0%, transparent 75%),
+        #fff;
+      padding: 15px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #1b7a39;
+    }
+    .hero p {
+      margin: 6px 0 14px;
+      color: #5f6f63;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .spotify-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 13px;
+      font-size: 21px;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, var(--green-600), var(--green-500));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.33), 0 9px 20px rgba(43,166,82,.26);
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+
+    .subcta {
+      margin-top: 8px;
+      text-align: center;
+      color: #7f8d83;
+      font-size: 11px;
+    }
+
+    .section-title {
+      margin: 16px 2px 8px;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+    .section-title.good { color: #1b7a39; }
+    .section-title.risky { color: #d34343; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .summary {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+      padding: 10px;
+    }
+
+    .summary.good { background: linear-gradient(180deg, #f0faef, #ffffff); }
+    .summary.risky { background: linear-gradient(180deg, #fff3f2, #ffffff); }
+
+    .summary-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #728174;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .summary-time {
+      margin: 3px 0 2px;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+    .summary.good .summary-time { color: #1e8f44; }
+    .summary.risky .summary-time { color: #df4b4b; }
+
+    .metric {
+      margin: 0;
+      font-size: 12px;
+      color: #68776b;
+      font-weight: 700;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 8px 22px rgba(32, 58, 37, .07);
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .impact {
+      margin: 10px;
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid #d8ecd8;
+      background: linear-gradient(135deg, #269f4b, #68c44f);
+      color: #fff;
+    }
+    .impact.risky {
+      border-color: #f4c7c4;
+      background: linear-gradient(135deg, #de4949, #f07957);
+    }
+    .impact h3 {
+      margin: 0;
+      font-size: 23px;
+      letter-spacing: -.02em;
+    }
+    .impact p {
+      margin: 4px 0 10px;
+      font-size: 12px;
+      opacity: .94;
+    }
+
+    .donate-btn {
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.17);
+      color: #fff;
+      padding: 8px 13px;
+      font-size: 20px;
+      font-weight: 900;
+      min-width: 148px;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+    }
+
+    .list {
+      padding: 2px 10px 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .item {
+      border: 1px solid #e3e9e3;
+      border-radius: 14px;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 9px;
+    }
+
+    .idx {
+      text-align: center;
+      color: #445149;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(160deg, #cdebcf, #8dcf95);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f7c3c;
+      font-weight: 900;
+      font-size: 14px;
+      margin-right: 8px;
+      flex: 0 0 auto;
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .item .title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item .meta {
+      margin: 4px 0 0;
+      color: #718076;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pill {
+      border-radius: 11px;
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      background: var(--green-soft);
+      color: #267f40;
+      border: 1px solid #cfe7d0;
+      max-width: 124px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .pill.risky {
+      background: var(--red-soft);
+      color: #d84a48;
+      border-color: #f4d1cf;
+    }
+
+    .footer-action {
+      margin: 10px;
+      width: calc(100% - 20px);
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green-600), var(--green-500));
+      color: #fff;
+      font-weight: 900;
+      font-size: 27px;
+      padding: 11px 14px;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+    }
+
+    .checkout {
+      padding: 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .row { display: flex; gap: 8px; align-items: center; }
+
+    input {
+      flex: 1;
+      border: 1px solid #d5dfd4;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+      color: #234329;
+      background: #fbfefb;
+    }
+
+    .secondary {
+      border: 1px solid #cce2ce;
+      border-radius: 10px;
+      background: #f5fbf5;
+      color: #2f7c43;
+      font-weight: 800;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(12px);
+      border-radius: 11px;
+      border: 1px solid #bfe2c6;
+      background: #1f8b44;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 12px;
+      opacity: 0;
+      transition: .2s;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(31, 139, 68, 0.25);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .tabbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,.94);
+      border-top: 1px solid #dde6dd;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      padding: 8px 8px 11px;
+      text-align: center;
+      color: #607066;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .tabbar .active { color: #1f8b44; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="statusbar"></div>
+    <div class="content">
+      <div class="topnav">
+        <div class="brand-mini"><span class="brand-dot"></span>Play it Forward</div>
+        <div id="spotifyStatus">Not connected</div>
+      </div>
+
+      <section class="hero">
+        <h1>Turn music taste into charitable impact.</h1>
+        <p>Connect Spotify, review your Good vs Risky artists, and donate to matched causes in one tap.</p>
+        <button class="spotify-btn" onclick="connectSpotify()">Log in with Spotify</button>
+        <p class="subcta">By logging in you agree to our terms and privacy policy.</p>
+      </section>
+
+      <p class="section-title">Good vs Risky Recap</p>
+      <section class="summary-grid">
+        <article class="summary good">
+          <p class="summary-label">Good artists</p>
+          <p class="summary-time" id="goodTime">0h 00m</p>
+          <p class="metric" id="kMatch">0 aligned artists</p>
+        </article>
+        <article class="summary risky">
+          <p class="summary-label">Risky artists</p>
+          <p class="summary-time" id="riskyTime">0h 00m</p>
+          <p class="metric" id="kState">waiting for Spotify</p>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="impact" id="impactCard">
+          <h3 id="impactTitle">Your aligned charity</h3>
+          <p id="impactMeta">Connect Spotify to calculate your recommendation.</p>
+          <button class="donate-btn" onclick="checkout()" id="impactDonate">Donate $10</button>
+        </div>
+
+        <p class="section-title good" style="margin:8px 10px;">Top artists with positive matches</p>
+        <div class="list" id="spotifyTop"></div>
+        <button class="footer-action" onclick="toggleMode()" id="modeBtn">See my Risky Listens</button>
+      </section>
+
+      <section class="card">
+        <p class="section-title risky" style="margin:10px;">Risky artists</p>
+        <div class="list" id="recs"></div>
+      </section>
+
+      <section class="card checkout">
+        <div class="row">
+          <input id="amt" value="10" inputmode="decimal" />
+          <label class="metric"><input id="ru" type="checkbox" checked /> round up</label>
+          <button class="secondary" onclick="loadSpotifyProfile()">Refresh</button>
+        </div>
+        <div class="row" style="justify-content:space-between; font-size:12px; color:#718076;">
+          <span>Partner: <strong id="statPartner">—</strong></span>
+          <span>Total: <strong id="statTotal">—</strong></span>
+          <span>Status: <strong id="statStatus">—</strong></span>
+        </div>
+      </section>
+    </div>
+
+    <div class="tabbar">
+      <div>Home</div>
+      <div class="active">Recap</div>
+      <div>Donate</div>
+      <div>Profile</div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const state = { mode: 'good' };
+
+    function showToast(text, tone='info') {
+      const el = document.getElementById('toast');
+      el.textContent = text;
+      el.style.background = tone === 'error' ? '#db4f4f' : '#1f8b44';
+      el.style.borderColor = tone === 'error' ? '#f2c2c2' : '#bfe2c6';
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 1900);
+    }
+
+    async function asJson(res) {
+      const payload = await res.json();
+      if (!res.ok) throw new Error(payload.error || 'Request failed');
+      return payload;
+    }
+
+    function initials(name) {
+      return String(name || '?').split(' ').filter(Boolean).slice(0,2).map(s => s[0]).join('').toUpperCase();
+    }
+
+    function renderTopArtists(rows) {
+      const el = document.getElementById('spotifyTop');
+      el.innerHTML = (rows || []).map(a => `
+        <article class="item">
+          <div class="idx">${a.rank}.</div>
+          <div class="info">
+            <div class="avatar">${initials(a.name)}</div>
+            <div>
+              <p class="title">${a.name}</p>
+              <p class="meta">Popularity ${a.popularity} · ${(a.genres || []).slice(0, 1).join('') || 'No genre listed'}</p>
+            </div>
+          </div>
+          <div class="pill">Good artist</div>
+        </article>
+      `).join('') || '<p class="metric">No top artists available yet.</p>';
+    }
+
+    function renderRecommendations(rows) {
+      const el = document.getElementById('recs');
+      el.innerHTML = (rows || []).map((r, idx) => `
+        <article class="item">
+          <div class="idx">${idx + 1}.</div>
+          <div class="info">
+            <div class="avatar" style="background:linear-gradient(160deg,#ffd6d4,#f38f8f);color:#b83838;">${initials(r.spotifyArtist)}</div>
+            <div>
+              <p class="title">${r.spotifyArtist}</p>
+              <p class="meta">${r.charityName}</p>
+            </div>
+          </div>
+          <div class="pill risky">$${r.suggestedDonationUsd}</div>
+        </article>
+      `).join('') || '<p class="metric">No risky matches found from your top artists.</p>';
+    }
+
+    function toggleMode() {
+      state.mode = state.mode === 'good' ? 'risky' : 'good';
+      const btn = document.getElementById('modeBtn');
+      const impact = document.getElementById('impactCard');
+      const impactTitle = document.getElementById('impactTitle');
+      if (state.mode === 'risky') {
+        btn.textContent = 'See my Good Listens';
+        impact.classList.add('risky');
+        impactTitle.textContent = 'Your risky listening recap';
+      } else {
+        btn.textContent = 'See my Risky Listens';
+        impact.classList.remove('risky');
+        impactTitle.textContent = 'Your aligned charity';
+      }
+    }
+
+    async function connectSpotify() {
+      try {
+        const returnTo = encodeURIComponent(window.location.pathname);
+        const payload = await asJson(await fetch(`/api/spotify/start?return_to=${returnTo}`));
+        window.location.href = payload.authorizeUrl;
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    async function loadSpotifyProfile() {
+      document.getElementById('kState').textContent = 'loading Spotify data';
+      try {
+        const payload = await asJson(await fetch('/api/spotify/me'));
+        const user = payload.profile.displayName || payload.profile.id;
+        document.getElementById('spotifyStatus').textContent = `Hi ${user}`;
+        document.getElementById('kMatch').textContent = `${payload.matchedRiskyCount || 0} aligned artists`;
+        document.getElementById('kState').textContent = 'ready to donate';
+        document.getElementById('goodTime').textContent = `${Math.max(1, 12 - (payload.matchedRiskyCount || 0))}h 45m`;
+        document.getElementById('riskyTime').textContent = `${(payload.matchedRiskyCount || 0) * 3 + 4}h 20m`;
+        document.getElementById('impactMeta').textContent = `${payload.riskyRecommendations?.[0]?.charityName || 'Community partner'} · Recommended one-time donation`;
+        document.getElementById('impactDonate').textContent = `Donate $${payload.overallSuggestedDonationUsd || 10}`;
+
+        renderTopArtists(payload.topArtists || []);
+        renderRecommendations(payload.riskyRecommendations || []);
+        showToast('Spotify recap loaded');
+      } catch (err) {
+        document.getElementById('spotifyStatus').textContent = 'Not connected';
+        document.getElementById('kState').textContent = 'connection required';
+        showToast(err.message, 'error');
+      }
+    }
+
+    async function checkout() {
+      try {
+        const amountUsd = Number(document.getElementById('amt').value || 0);
+        const roundUpProcessingFees = document.getElementById('ru').checked;
+        const payload = await asJson(await fetch('/api/donations/checkout', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ amountUsd, roundUpProcessingFees })
+        }));
+        document.getElementById('statPartner').textContent = payload.partner;
+        document.getElementById('statTotal').textContent = `$${payload.totalUsd}`;
+        document.getElementById('statStatus').textContent = payload.status.replaceAll('_', ' ');
+        showToast('Donation checkout created');
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    if (new URLSearchParams(window.location.search).get('spotify_connected') === '1') {
+      showToast('Spotify connected');
+      loadSpotifyProfile();
+      const u = new URL(window.location.href);
+      u.searchParams.delete('spotify_connected');
+      window.history.replaceState({}, '', u.toString());
+    }
+  </script>
+</body>
+</html>

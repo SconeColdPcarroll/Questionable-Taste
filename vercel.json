@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/apps/web/index.html"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/apps/web/index.html"
+    }
+  ],
+  "installCommand": "echo 'Skipping install: no external npm deps are required for web preview + api routes'",
+  "buildCommand": "echo 'No build step required'"
+}

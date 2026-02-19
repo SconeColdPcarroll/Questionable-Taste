@@ -1,0 +1,16 @@
+{
+  "name": "play-it-forward",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "api:start": "node apps/api/src/server.js",
+    "import:mappings": "node scripts/import-mappings.js",
+    "import:mappings:local": "node scripts/import-mappings.js",
+    "import:mappings:badbois": "node scripts/import-mappings.js data/bad-bois.pasted.txt",
+    "test": "node --test tests/*.test.js tests/*.js"
+  }
+}

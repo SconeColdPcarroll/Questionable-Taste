@@ -35,6 +35,7 @@ Add these repository secrets:
 - If a token is pasted in chat/logs, rotate it in Vercel and update the GitHub secret.
 
 ## Troubleshooting
+- If Vercel errors with `No Output Directory named "public" found`, ensure `buildCommand` runs successfully (`node scripts/vercel-build.js`) so `apps/web` is copied into `public/` during build.
 - Vercel previews now intentionally skip `npm install` because this project's deployed web preview + API routes use Node built-ins only; this avoids workspace/mobile install failures in CI.
 - If Spotify connect returns `upstream connect error ... connection refused`, make sure your Vercel project **Root Directory is the repo root** and that `vercel.json` does **not** set a static-only `outputDirectory` that disables `/api/*` serverless functions.
 - Missing secret failures are explicit at workflow start.

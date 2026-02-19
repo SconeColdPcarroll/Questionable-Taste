@@ -1,15 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
   "rewrites": [
     {
       "source": "/",
-      "destination": "/apps/web/index.html"
+      "destination": "/index.html"
     },
     {
       "source": "/((?!api/).*)",
-      "destination": "/apps/web/index.html"
+      "destination": "/index.html"
     }
   ],
   "installCommand": "echo 'Skipping install: no external npm deps are required for web preview + api routes'",
-  "buildCommand": "echo 'No build step required'"
+  "buildCommand": "node scripts/vercel-build.js"
 }

@@ -1,4 +1,4 @@
-const { createState, json, getBaseUrl, sanitizeReturnTo } = require('./_lib');
+const { createState, json, getBaseUrl, sanitizeReturnTo, resolveRedirectUri } = require('./_lib');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
   }
 
   const returnTo = sanitizeReturnTo(req.query.return_to || req.query.returnTo || '/');
-  const redirectUri = process.env.SPOTIFY_REDIRECT_URI || `${baseUrl}/api/spotify/callback`;
+  const { redirectUri, source: redirectUriSource } = resolveRedirectUri(baseUrl);
 
   const state = createState({ returnTo, t: Date.now() });
   const qs = new URLSearchParams({
@@ -28,6 +28,7 @@ module.exports = async function handler(req, res) {
   return json(res, 200, {
     authorizeUrl: `https://accounts.spotify.com/authorize?${qs.toString()}`,
     redirectUri,
+    redirectUriSource,
     returnTo
   });
 };

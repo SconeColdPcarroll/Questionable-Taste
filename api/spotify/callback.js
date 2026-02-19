@@ -1,4 +1,4 @@
-const { parseState, getBaseUrl, exchangeCodeForToken, signToken, sanitizeReturnTo } = require('./_lib');
+const { parseState, getBaseUrl, exchangeCodeForToken, signToken, sanitizeReturnTo, resolveRedirectUri } = require('./_lib');
 
 module.exports = async function handler(req, res) {
   const code = String(req.query.code || '');
@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const redirectUri = process.env.SPOTIFY_REDIRECT_URI || `${baseUrl}/api/spotify/callback`;
+  const { redirectUri } = resolveRedirectUri(baseUrl);
 
   try {
     const token = await exchangeCodeForToken({ code, redirectUri });

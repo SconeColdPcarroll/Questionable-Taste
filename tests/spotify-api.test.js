@@ -46,6 +46,26 @@ test('sanitizeReturnTo blocks external and protocol-relative redirects', () => {
   assert.equal(lib.sanitizeReturnTo('/safe?ok=1'), '/safe?ok=1');
 });
 
+test('resolveRedirectUri ignores SPOTIFY_REDIRECT_URI host mismatch by default', () => {
+  process.env.SPOTIFY_REDIRECT_URI = 'https://patryancarroll.bubbleapps.io/version-test/listening_history';
+  delete process.env.SPOTIFY_ALLOW_EXTERNAL_REDIRECT_URI;
+
+  const result = lib.resolveRedirectUri('https://questionable-taste.vercel.app');
+  assert.equal(result.redirectUri, 'https://questionable-taste.vercel.app/api/spotify/callback');
+  assert.equal(result.source, 'default_env_mismatch');
+});
+
+test('resolveRedirectUri can allow external callback only when explicitly enabled', () => {
+  process.env.SPOTIFY_REDIRECT_URI = 'https://patryancarroll.bubbleapps.io/version-test/listening_history';
+  process.env.SPOTIFY_ALLOW_EXTERNAL_REDIRECT_URI = '1';
+
+  const result = lib.resolveRedirectUri('https://questionable-taste.vercel.app');
+  assert.equal(result.redirectUri, 'https://patryancarroll.bubbleapps.io/version-test/listening_history');
+  assert.equal(result.source, 'env_external_allowed');
+
+  delete process.env.SPOTIFY_ALLOW_EXTERNAL_REDIRECT_URI;
+});
+
 test('start handler returns authorize URL and sanitized returnTo', async () => {
   process.env.SPOTIFY_CLIENT_ID = 'abc123';
   delete process.env.SPOTIFY_REDIRECT_URI;
@@ -63,6 +83,7 @@ test('start handler returns authorize URL and sanitized returnTo', async () => {
   assert.equal(payload.returnTo, '/');
   assert.match(payload.authorizeUrl, /^https:\/\/accounts\.spotify\.com\/authorize\?/);
   assert.equal(payload.redirectUri, 'https://example.vercel.app/api/spotify/callback');
+  assert.equal(payload.redirectUriSource, 'default');
 });
 
 test('me handler returns 401 when cookie missing', async () => {

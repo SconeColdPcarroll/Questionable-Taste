@@ -15,6 +15,31 @@ function getBaseUrl(req) {
   return `${proto}://${host}`;
 }
 
+
+function resolveRedirectUri(baseUrl) {
+  const fallback = `${baseUrl}/api/spotify/callback`;
+  const configured = process.env.SPOTIFY_REDIRECT_URI;
+  if (!configured) return { redirectUri: fallback, source: 'default' };
+
+  let configuredUrl;
+  let base;
+  try {
+    configuredUrl = new URL(configured);
+    base = new URL(baseUrl);
+  } catch {
+    return { redirectUri: fallback, source: 'default_invalid_env' };
+  }
+
+  const allowExternal = String(process.env.SPOTIFY_ALLOW_EXTERNAL_REDIRECT_URI || '').toLowerCase() === '1';
+  const sameHost = configuredUrl.host.toLowerCase() === base.host.toLowerCase();
+
+  if (allowExternal || sameHost) {
+    return { redirectUri: configuredUrl.toString(), source: allowExternal ? 'env_external_allowed' : 'env_same_host' };
+  }
+
+  return { redirectUri: fallback, source: 'default_env_mismatch' };
+}
+
 function readSigningSecret() {
   return process.env.SPOTIFY_STATE_SECRET || DEFAULT_SECRET;
 }
@@ -143,6 +168,7 @@ module.exports = {
   json,
   getBaseUrl,
   sanitizeReturnTo,
+  resolveRedirectUri,
   fetchJson,
   exchangeCodeForToken,
   signToken,
